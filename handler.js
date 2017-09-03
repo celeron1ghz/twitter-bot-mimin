@@ -10,19 +10,31 @@ const client  = new twitter({
 });
 
 module.exports.mimin = (event, context, callback) => {
-	Promise.resolve()
+    let hash;
+
+    Promise.resolve()
+        .then(data => {
+            const param = JSON.parse(event.body);
+
+            if (param.sender.login != "niltea") {
+                console.log("You are not niltea, ignore...");
+                throw Error("You are not mimin");
+            }
+
+            hash = param.after ? `(${param.after.substr(0,7)})` : "[unknown]";
+        })
         .then(data => {
             const image = fs.readFileSync('mimin_ga_mi.jpg');
             return client.post('media/upload', { media: image });
         })
         .then(data => {
-            return client.post('statuses/update', { status: "みみんがみ", media_ids: data.media_id_string })
+            return client.post('statuses/update', { status: `みみんがみ ${hash}`, media_ids: data.media_id_string })
         })
         .then(data => {
             callback(null, { statusCode: 200, body: "OK" });
         })
         .catch(err => {
             console.log("Error happen:", err);
-            callback(err);
+            callback(null, { statusCode: 200, body: "ERROR" });
         });
 };

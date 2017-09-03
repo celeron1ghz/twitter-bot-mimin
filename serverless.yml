@@ -14,7 +14,7 @@ functions:
     events:
       - http:
           path: endpoint
-          method: get
+          method: post
     environment:
       MIMIN_CONSUMER_KEY:        ${file(kms.js):kms.MIMIN_CONSUMER_KEY}
       MIMIN_CONSUMER_SECRET:     ${file(kms.js):kms.MIMIN_CONSUMER_SECRET}
