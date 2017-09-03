@@ -15,5 +15,8 @@ functions:
       - http:
           path: endpoint
           method: get
-#    environment:
-#      variable2: value2
+    environment:
+      MIMIN_CONSUMER_KEY:        ${file(kms.js):kms.MIMIN_CONSUMER_KEY}
+      MIMIN_CONSUMER_SECRET:     ${file(kms.js):kms.MIMIN_CONSUMER_SECRET}
+      MIMIN_ACCESS_TOKEN_KEY:    ${file(kms.js):kms.MIMIN_ACCESS_TOKEN_KEY}
+      MIMIN_ACCESS_TOKEN_SECRET: ${file(kms.js):kms.MIMIN_ACCESS_TOKEN_SECRET}

@@ -1,0 +1,9 @@
+{
+  "name": "twitter-bot-mimin",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "dependencies": {
+    "twitter": "^1.7.1"
+  }
+}
