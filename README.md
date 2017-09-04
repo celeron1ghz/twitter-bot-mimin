@@ -31,3 +31,4 @@ serverless でデプロイ後表示されるURLを GithubのrepoのWebhookに指
 ## SEE ALSO
  * https://github.com/celeron1ghz/twitter-bot-mimin.git
  * https://twitter.com/niltea
+ * https://twitter.com/mimin_ga_mi_bot
