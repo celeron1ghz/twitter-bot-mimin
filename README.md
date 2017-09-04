@@ -6,16 +6,19 @@
 
 ## SETUP
 ```
-#
-# 必要な値をcredstashでセットしておく
-#
+## 必要な値をcredstashでセットしておく
+credstash -r ap-northeast-1 put -a MIMIN_CONSUMER_KEY ...
+credstash -r ap-northeast-1 put -a MIMIN_CONSUMER_SECRET ...
+credstash -r ap-northeast-1 put -a MIMIN_ACCESS_TOKEN_KEY ...
+credstash -r ap-northeast-1 put -a MIMIN_ACCESS_TOKEN_SECRET ...
 
+## serverlessでセットアップ
 git clone https://github.com/celeron1ghz/twitter-bot-mimin.git
-cd billing-notifier/lambda
+cd twitter-bot-mimin
 sls deploy
 ```
 
-serverless でデプロイ後表示されるURLを 　GithubのrepoのWebhookに指定してください。`Content-Type` は `application/json` にしてね。
+serverless でデプロイ後表示されるURLを GithubのrepoのWebhookに指定してください。`Content-Type` は `application/json` にしてね。
 
 
 ## REQUIRED CREDSTASH VARIABLES
