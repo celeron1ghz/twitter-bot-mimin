@@ -11,6 +11,7 @@ provider:
 functions:
   mimin:
     handler: handler.mimin
+    description: Post image to twitter at niltea is push to github
     events:
       - http:
           path: endpoint
@@ -20,3 +21,6 @@ functions:
       MIMIN_CONSUMER_SECRET:     ${file(kms.js):kms.MIMIN_CONSUMER_SECRET}
       MIMIN_ACCESS_TOKEN_KEY:    ${file(kms.js):kms.MIMIN_ACCESS_TOKEN_KEY}
       MIMIN_ACCESS_TOKEN_SECRET: ${file(kms.js):kms.MIMIN_ACCESS_TOKEN_SECRET}
+
+resources:
+  Description: Post image to twitter at niltea is push to github
