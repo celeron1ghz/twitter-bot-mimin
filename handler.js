@@ -9,7 +9,7 @@ const client  = new twitter({
     access_token_secret: process.env.MIMIN_ACCESS_TOKEN_SECRET,
 });
 
-module.exports.mimin = (event, context, callback) => {
+module.exports.main = (event, context, callback) => {
     let hash;
 
     Promise.resolve()

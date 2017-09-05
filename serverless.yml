@@ -1,4 +1,4 @@
-service: twitter-bot
+service: twitter-bot-mimin
 
 provider:
   name: aws
@@ -7,10 +7,22 @@ provider:
   region: ap-northeast-1
   deploymentBucket: serverless-upload-ap-northeast-1
   versionFunctions: false
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - kms:Decrypt
+      Resource: "${s3:serverless-upload-ap-northeast-1/credstash_kms_key_arn}"
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:Query
+        - dynamodb:Scan
+      Resource:
+        Fn::Join: [ ":", ["arn:aws:dynamodb", { Ref: AWS::Region }, { Ref: AWS::AccountId }, "table/credential-store"]]
 
 functions:
-  mimin:
-    handler: handler.mimin
+  main:
+    handler: handler.main
     description: Post image to twitter at niltea is push to github
     events:
       - http:
