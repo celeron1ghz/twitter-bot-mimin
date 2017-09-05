@@ -4,7 +4,9 @@
   "description": "Post image to twitter when niltea is push to github",
   "license": "ISC",
   "dependencies": {
-    "twitter": "^1.7.1"
+    "credstash-promise": "^2.1.2",
+    "twitter": "^1.7.1",
+    "vo": "^4.0.2"
   },
   "devDependencies": {},
   "repository": {
