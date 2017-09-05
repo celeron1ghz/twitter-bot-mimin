@@ -1,9 +1,15 @@
 {
   "name": "twitter-bot-mimin",
   "version": "1.0.0",
-  "description": "",
+  "description": "Post image to twitter when niltea is push to github",
   "license": "ISC",
   "dependencies": {
     "twitter": "^1.7.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/celeron1ghz/twitter-bot-mimin.git"
+  },
+  "author": ""
 }
