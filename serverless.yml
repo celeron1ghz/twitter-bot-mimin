@@ -23,7 +23,7 @@ provider:
 functions:
   main:
     handler: handler.main
-    description: Post image to twitter at niltea is push to github
+    description: Post image to twitter when niltea is push to github
     events:
       - http:
           path: endpoint
@@ -35,4 +35,4 @@ functions:
       MIMIN_ACCESS_TOKEN_SECRET: ${file(kms.js):kms.MIMIN_ACCESS_TOKEN_SECRET}
 
 resources:
-  Description: Post image to twitter at niltea is push to github
+  Description: Post image to twitter when niltea is push to github
