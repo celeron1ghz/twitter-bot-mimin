@@ -36,3 +36,7 @@ functions:
 
 resources:
   Description: Post image to twitter when niltea is push to github
+  Resources:
+    MainLogGroup:
+      Properties:
+        RetentionInDays: 7
