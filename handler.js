@@ -2,16 +2,17 @@
 
 const fs = require('fs');
 const vo = require('vo');
-const cred = require('credstash-promise');
+const aws = require('aws-sdk');
+const ssm = new aws.SSM();
 const twitter = require('twitter');
 
 module.exports.main = (event, context, callback) => {
     vo(function*(){
         const client  = new twitter({
-            consumer_key:        yield cred.fetchCred('MIMIN_CONSUMER_KEY'),
-            consumer_secret:     yield cred.fetchCred('MIMIN_CONSUMER_SECRET'),
-            access_token_key:    yield cred.fetchCred('MIMIN_ACCESS_TOKEN_KEY'),
-            access_token_secret: yield cred.fetchCred('MIMIN_ACCESS_TOKEN_SECRET'),
+            consumer_key:        (yield ssm.getParameter({ Name: '/mimin/consumer_key',        WithDecryption: true }).promise() ).Value,
+            consumer_secret:     (yield ssm.getParameter({ Name: '/mimin/consumer_secret',     WithDecryption: true }).promise() ).Value,
+            access_token_key:    (yield ssm.getParameter({ Name: '/mimin/access_token_key',    WithDecryption: true }).promise() ).Value,
+            access_token_secret: (yield ssm.getParameter({ Name: '/mimin/access_token_secret', WithDecryption: true }).promise() ).Value,
         });
 
         let hash;
