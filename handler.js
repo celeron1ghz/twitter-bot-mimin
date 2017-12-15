@@ -9,10 +9,10 @@ const twitter = require('twitter');
 module.exports.main = (event, context, callback) => {
     vo(function*(){
         const client  = new twitter({
-            consumer_key:        (yield ssm.getParameter({ Name: '/mimin/consumer_key',        WithDecryption: true }).promise() ).Value,
-            consumer_secret:     (yield ssm.getParameter({ Name: '/mimin/consumer_secret',     WithDecryption: true }).promise() ).Value,
-            access_token_key:    (yield ssm.getParameter({ Name: '/mimin/access_token_key',    WithDecryption: true }).promise() ).Value,
-            access_token_secret: (yield ssm.getParameter({ Name: '/mimin/access_token_secret', WithDecryption: true }).promise() ).Value,
+            consumer_key:        (yield ssm.getParameter({ Name: '/mimin/consumer_key',        WithDecryption: true }).promise() ).Parameter.Value,
+            consumer_secret:     (yield ssm.getParameter({ Name: '/mimin/consumer_secret',     WithDecryption: true }).promise() ).Parameter.Value,
+            access_token_key:    (yield ssm.getParameter({ Name: '/mimin/access_token_key',    WithDecryption: true }).promise() ).Parameter.Value,
+            access_token_secret: (yield ssm.getParameter({ Name: '/mimin/access_token_secret', WithDecryption: true }).promise() ).Parameter.Value,
         });
 
         let hash;
