@@ -20,7 +20,6 @@ cd twitter-bot-mimin
 sls deploy
 ```
 
-
 ### GithubのWebhookに指定
 serverless でデプロイ後表示されるURLを GithubのrepoのWebhookに指定してください。`Content-Type` は `application/json` にしてね。
 
