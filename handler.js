@@ -32,7 +32,7 @@ module.exports.main = (event, context, callback) => {
         callback(null, { statusCode: 200, body: "OK" });
     })
     .catch(err => {
-        console.log("Error happen:", err);
+        console.log("Error happen:", err.message);
         callback(null, { statusCode: 200, body: "ERROR" });
     });
 };
