@@ -4,24 +4,27 @@
 ![みみんがみ](./mimin_ga_mi.jpg)
 
 
-## SETUP
-### 環境変数の設定
-下記の値をEC2 Parameter Storeに設定する。
+## SETUP ENVIRONMENT VARIABLES
+Set these value to `EC2 Parameter Store`.
 
- * `MIMIN_CONSUMER_KEY`: Twitterのconsumer key
- * `MIMIN_CONSUMER_SECRET`: Twitterのconsumer secret
- * `MIMIN_ACCESS_TOKEN_KEY`: Twitterのaccess token
- * `MIMIN_ACCESS_TOKEN_SECRET`: Twitterのaccess secret
+ * `/mimin/consumer_key`: Twitter's consumer key
+ * `/mimin/consumer_secret`: Twitter's consumer secret
+ * `/mimin/access_token_key`: Twitter's access token
+ * `/mimin/access_token_secret`: Twitter's access secret
 
-### serverlessでセットアップ
+
+## SETUP SERVERLESS SCRIPT
 ```
 git clone https://github.com/celeron1ghz/twitter-bot-mimin.git
 cd twitter-bot-mimin
 sls deploy
 ```
 
-### GithubのWebhookに指定
-serverless でデプロイ後表示されるURLを GithubのrepoのWebhookに指定してください。`Content-Type` は `application/json` にしてね。
+
+### SETUP Github Webhook
+Set **API Gateway**'s URL to **Github Webhook URL**.
+
+`Content-Type` should be `application/json`.
 
 
 ## SEE ALSO
