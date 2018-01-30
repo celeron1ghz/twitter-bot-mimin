@@ -21,7 +21,7 @@ sls deploy
 ```
 
 
-### SETUP Github Webhook
+## SETUP Github Webhook
 Set **API Gateway**'s URL to **Github Webhook URL**.
 
 `Content-Type` should be `application/json`.
