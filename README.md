@@ -1,7 +1,7 @@
 # twitter-bot-mimin
-渋澤タカシ[@niltea](https://twitter.com/niltea) がGithubにpushした時に下記の **みみんがみ** の画像をTwitterに投稿します。
+Post below **'mimin ga mi'** image to Twitter when **Takashi Shibusawa** ([@niltea](https://twitter.com/niltea)) is push to github.
 
-![みみんがみ](./mimin_ga_mi.jpg)
+<img src="./mimin_ga_mi.jpg" alt="みみんがみ" height="200"/>
 
 
 ## SETUP ENVIRONMENT VARIABLES
