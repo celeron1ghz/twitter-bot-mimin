@@ -1,5 +1,5 @@
 # twitter-bot-mimin
-Post below **'mimin ga mi'** image to Twitter when **Takashi Shibusawa** ([@niltea](https://twitter.com/niltea)) is push to github.
+Post below **'mimin ga mi'** image to Twitter when **Takashi Shibusawa** ([@niltea](https://twitter.com/niltea)) is push any source to github.
 
 <img src="./mimin_ga_mi.jpg" alt="みみんがみ" height="200"/>
 
