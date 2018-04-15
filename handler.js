@@ -3,7 +3,7 @@
 const fs = require('fs');
 const twitter = require('twitter');
 
-module.exports.main = async function (event, context, callback) {
+module.exports.main = async (event, context, callback) => {
   try {
     const client  = new twitter({
       consumer_key:        process.env.MIMIN_TWITTER_COMSUMER_KEY,
@@ -28,7 +28,7 @@ module.exports.main = async function (event, context, callback) {
 
     callback(null, { statusCode: 200, body: "OK" });
   } catch(err) {
-    console.log("Error happen:", err);
+    console.log("Error happen:", err.message);
     callback(null, { statusCode: 200, body: "ERROR" });
   }
 };
