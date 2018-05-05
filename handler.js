@@ -2,8 +2,18 @@
 
 const fs = require('fs');
 const twitter = require('twitter');
+const crypto = require('crypto');
 
 module.exports.main = async (event, context, callback) => {
+  const header = event.headers['X-Hub-Signature'];
+  const given = header.split('=')[1];
+  const calc = crypto.createHmac('sha1', process.env.MIMIN_TOKEN).update(event.body).digest('hex');
+
+  if (given !== calc) {
+    console.log(`VALIDATION_ERROR: calc='${calc}', given='${given}'`);
+    return callback(null, { statusCode: 400, body: "INVALID_TOKEN" });
+  }
+
   try {
     const client  = new twitter({
       consumer_key:        process.env.MIMIN_TWITTER_COMSUMER_KEY,

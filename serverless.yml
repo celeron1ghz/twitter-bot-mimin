@@ -13,6 +13,7 @@ functions:
     handler: handler.main
     description: Post image to twitter when niltea is push to github
     environment:
+      MIMIN_TOKEN:                       "${ssm:/app/mimin/token~true}"
       MIMIN_TWITTER_COMSUMER_KEY:        "${ssm:/app/mimin/consumer_key~true}"
       MIMIN_TWITTER_COMSUMER_SECRET:     "${ssm:/app/mimin/consumer_secret~true}"
       MIMIN_TWITTER_ACCESS_TOKEN:        "${ssm:/app/mimin/access_token_key~true}"
