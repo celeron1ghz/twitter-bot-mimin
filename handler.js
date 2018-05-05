@@ -5,16 +5,16 @@ const twitter = require('twitter');
 const crypto = require('crypto');
 
 module.exports.main = async (event, context, callback) => {
-  const header = event.headers['X-Hub-Signature'];
-  const given = header.split('=')[1];
-  const calc = crypto.createHmac('sha1', process.env.MIMIN_TOKEN).update(event.body).digest('hex');
-
-  if (given !== calc) {
-    console.log(`VALIDATION_ERROR: calc='${calc}', given='${given}'`);
-    return callback(null, { statusCode: 400, body: "INVALID_TOKEN" });
-  }
-
   try {
+    const header = event.headers ? event.headers['X-Hub-Signature'] || '' : '';
+    const given = header.split('=')[1];
+    const calc = crypto.createHmac('sha1', process.env.MIMIN_TOKEN).update(event.body).digest('hex');
+
+    if (given !== calc) {
+      console.log(`VALIDATION_ERROR: calc='${calc}', given='${given}'`);
+      return callback(null, { statusCode: 400, body: "INVALID_TOKEN" });
+    }
+
     const client  = new twitter({
       consumer_key:        process.env.MIMIN_TWITTER_COMSUMER_KEY,
       consumer_secret:     process.env.MIMIN_TWITTER_COMSUMER_SECRET,
@@ -22,16 +22,13 @@ module.exports.main = async (event, context, callback) => {
       access_token_secret: process.env.MIMIN_TWITTER_ACCESS_TOKEN_SECRET,
     });
 
-    let hash;
-
     const param = JSON.parse(event.body);
 
     if (param.sender.login != "niltea") {
       throw Error("You are not mimin");
     }
 
-    hash = param.after ? `(${param.after.substr(0,7)})` : "[unknown]";
-
+    const hash  = param.after ? `(${param.after.substr(0,7)})` : "[unknown]";
     const image = fs.readFileSync('mimin_ga_mi.jpg');
     const media = await client.post('media/upload', { media: image });
     const ret   = await client.post('statuses/update', { status: `みみんがみ ${hash}`, media_ids: media.media_id_string });
