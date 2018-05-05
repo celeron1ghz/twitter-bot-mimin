@@ -28,3 +28,26 @@ resources:
     MainLogGroup:
       Properties:
         RetentionInDays: 7
+
+    Domain:
+      Type: AWS::ApiGateway::DomainName
+      Properties:
+        CertificateArn: "${ssm:/acm/camelon.info~true}"
+        DomainName: "mimin.camelon.info"
+
+    Mapping:
+      Type: AWS::ApiGateway::BasePathMapping
+      Properties:
+        DomainName: { Ref: Domain }
+        RestApiId:  { Ref: ApiGatewayRestApi }
+        Stage: dev
+
+    RecordSetOfAPI:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        Name: "mimin.camelon.info"
+        Type: A
+        HostedZoneName: "camelon.info."
+        AliasTarget:
+          DNSName: { Fn::GetAtt: [Domain, DistributionDomainName] }
+          HostedZoneId: Z2FDTNDATAQYW2
