@@ -13,10 +13,10 @@ functions:
     handler: handler.main
     description: Post image to twitter when niltea is push to github
     environment:
-      MIMIN_TWITTER_COMSUMER_KEY:        "${ssm:/mimin/consumer_key~true}"
-      MIMIN_TWITTER_COMSUMER_SECRET:     "${ssm:/mimin/consumer_secret~true}"
-      MIMIN_TWITTER_ACCESS_TOKEN:        "${ssm:/mimin/access_token_key~true}"
-      MIMIN_TWITTER_ACCESS_TOKEN_SECRET: "${ssm:/mimin/access_token_secret~true}"
+      MIMIN_TWITTER_COMSUMER_KEY:        "${ssm:/app/mimin/consumer_key~true}"
+      MIMIN_TWITTER_COMSUMER_SECRET:     "${ssm:/app/mimin/consumer_secret~true}"
+      MIMIN_TWITTER_ACCESS_TOKEN:        "${ssm:/app/mimin/access_token_key~true}"
+      MIMIN_TWITTER_ACCESS_TOKEN_SECRET: "${ssm:/app/mimin/access_token_secret~true}"
     events:
       - http:
           path: endpoint
