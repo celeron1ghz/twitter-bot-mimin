@@ -30,6 +30,10 @@ resources:
       Properties:
         RetentionInDays: 7
 
+    IamRoleLambdaExecution:
+      Properties:
+        RoleName: "${self:service}"
+
     Domain:
       Type: AWS::ApiGateway::DomainName
       Properties:
