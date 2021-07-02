@@ -1,8 +1,9 @@
 service: twitter-bot-mimin
+variablesResolutionMode: 20210326
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: go1.x
   stage: dev
   region: ap-northeast-1
   deploymentBucket: serverless-upload-ap-northeast-1
@@ -10,14 +11,14 @@ provider:
 
 functions:
   main:
-    handler: handler.main
+    handler: handler
     description: Post image to twitter when niltea is push to github
     environment:
-      MIMIN_TOKEN:                       "${ssm:/app/mimin/token~true}"
-      MIMIN_TWITTER_COMSUMER_KEY:        "${ssm:/app/mimin/consumer_key~true}"
-      MIMIN_TWITTER_COMSUMER_SECRET:     "${ssm:/app/mimin/consumer_secret~true}"
-      MIMIN_TWITTER_ACCESS_TOKEN:        "${ssm:/app/mimin/access_token_key~true}"
-      MIMIN_TWITTER_ACCESS_TOKEN_SECRET: "${ssm:/app/mimin/access_token_secret~true}"
+      MIMIN_TOKEN:                       "${ssm:/app/mimin/token}"
+      MIMIN_TWITTER_COMSUMER_KEY:        "${ssm:/app/mimin/consumer_key}"
+      MIMIN_TWITTER_COMSUMER_SECRET:     "${ssm:/app/mimin/consumer_secret}"
+      MIMIN_TWITTER_ACCESS_TOKEN:        "${ssm:/app/mimin/access_token_key}"
+      MIMIN_TWITTER_ACCESS_TOKEN_SECRET: "${ssm:/app/mimin/access_token_secret}"
     events:
       - http:
           path: endpoint
@@ -27,17 +28,19 @@ resources:
   Description: Post image to twitter when niltea is push to github
   Resources:
     MainLogGroup:
+      Type: AWS::Logs::LogGroup
       Properties:
         RetentionInDays: 7
 
     IamRoleLambdaExecution:
+      Type: AWS::IAM::Role
       Properties:
         RoleName: "${self:service}"
 
     Domain:
       Type: AWS::ApiGateway::DomainName
       Properties:
-        CertificateArn: "${ssm:/acm/camelon.info~true}"
+        CertificateArn: "${ssm:/acm/camelon.info}"
         DomainName: "mimin.camelon.info"
 
     Mapping:
